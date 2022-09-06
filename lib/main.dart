@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_personal_expenses/models/transaction.dart';
-
+import 'components/transaction_user.dart';
 main() => runApp(ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
@@ -17,21 +14,7 @@ class ExpensesApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final _transactions = [
-    Transaction(
-      id: 't1',
-      title: 'tenis',
-      value: 310.89,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't1',
-      title: 'camisa',
-      value: 41.10,
-      date: DateTime.now(),
-    )
-  ];
-
+  
   MyHomePage({Key? key}) : super(key: key);
 
   @override
@@ -41,15 +24,12 @@ class MyHomePage extends StatelessWidget {
         title: Text('Despesas pessoais'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Card(
-            child: Text('a'),
+            child: Text('Gráfico'),
           ),
-          Card(
-            child: Text('a'),
-          ),
+          TransactionUser(),
         ],
       ),
     );
