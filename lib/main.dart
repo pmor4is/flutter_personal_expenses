@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_personal_expenses/components/chart.dart';
+import 'package:flutter_personal_expenses/components/splash_page.dart';
 import 'dart:math';
 import 'components/transaction_list.dart';
 import 'components/transaction_form.dart';
@@ -13,7 +15,7 @@ class ExpensesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData();
     return MaterialApp(
-      home: MyHomePage(),
+      home: SplashPage(),
 
       //Definição de tema da aplicação
       theme: tema.copyWith(
@@ -64,6 +66,16 @@ class _MyHomePageState extends State<MyHomePage> {
     )
   ];
 
+  //Método para filtrar somente os últimos sete dias
+  List<Transaction> get _recentTransactions {
+    //Retorna verdadeiro se a data estiver a sete dias da data original, e entra na lista
+    return _transactions.where((tr) {
+      return tr.date.isAfter(DateTime.now().subtract(
+        Duration(days: 7),
+      ));
+    }).toList();
+  }
+  
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
@@ -103,9 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Card(
-              child: Text('Gráfico'),
-            ),
+            Chart(_recentTransactions),
             TransactionList(_transactions),
           ],
         ),
