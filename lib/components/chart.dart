@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_personal_expenses/components/char_bar.dart';
 import 'package:intl/intl.dart';
+import '../components/chart_bar.dart';
 import '../models/transaction.dart';
 
 class Chart extends StatelessWidget {
@@ -31,7 +31,7 @@ class Chart extends StatelessWidget {
         'day': DateFormat.E().format(weekDay)[0],
         'value': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
   double get _weekTotalValue {
@@ -58,7 +58,8 @@ class Chart extends StatelessWidget {
               child: ChartBar(
                 label: tr['day'],
                 value: tr['value'],
-                percentage: (tr['value'] as double)/_weekTotalValue,
+                //Validação: não pode haver divisão por zero para não quebrar a aplicação
+                percentage: _weekTotalValue == 0 ? 0 : (tr['value'] as double)/_weekTotalValue,
               ),
             );
           }).toList(),
