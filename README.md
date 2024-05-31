@@ -22,6 +22,7 @@ flutter run
 ~~~
 
 ## Telas do aplicativo
+<div align='center'>
 
 | Tela inicial | Tela para adicionar transações |
 |---|---|
@@ -35,5 +36,6 @@ flutter run
 |---|---|
 | ![Imagem 1](./.git-assets/img5.png) | ![Imagem 2](./.git-assets/img6.png) |
 
+</div>
 ## Referência
 Projeto ensinado no curso da Cod3r no Udemy
